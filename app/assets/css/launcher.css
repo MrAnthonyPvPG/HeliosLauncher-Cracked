@@ -1,8 +1,4 @@
 /* Github Code Highlighting. */
-@import "syntax-theme.css";
-@import "roboto.css";
-
-
 /*******************************************************************************
  *                                                                             *
  * Fonts                                                                       *
@@ -10,16 +6,12 @@
  ******************************************************************************/
 
 @font-face {
-    font-family: "Roboto", serif;
-    font-weight: 500;
-    font-style: normal;
+    font-family: 'Avenir Book';
     src: url('../fonts/Avenir-Book.ttf');
 }
 
 @font-face {
-    font-family: "Roboto", serif;
-    font-weight: 500;
-    font-style: normal;
+    font-family: 'Avenir Medium';
     src: url('../fonts/Avenir-Medium.ttf');
 }
 
@@ -48,9 +40,7 @@ p {
 
 /* Set default font and color. */
 body, button {
-    font-family: "Roboto", serif;
-    font-weight: 500;
-    font-style: normal;
+    font-family: 'Avenir Book';
     color: white;
 }
 
@@ -118,9 +108,7 @@ body, button {
 }
 #frameTitleText {
     font-size: 14px;
-    font-family: "Roboto", serif;
-    font-weight: 500;
-    font-style: normal;
+    font-family: 'Avenir Medium';
     letter-spacing: 0.5px;
 }
 
@@ -236,9 +224,6 @@ body, button {
 }
 
 #welcomeContent {
-    font-family: "Roboto", serif;
-    font-weight: 500;
-    font-style: normal;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -297,28 +282,26 @@ body, button {
 }
 
 #welcomeHeader {
-    font-family: "Roboto", serif;
-    font-weight: 500;
-    font-style: normal;
+    font-family: 'Avenir Medium';
     text-align: center;
     color: white;
     margin-bottom: 25px;
     letter-spacing: 1px;
-    font-size: 24px;
+    font-size: 20px;
     text-shadow: white 0px 0px 0px;
 }
 
 #welcomeDescription {
-    text-align: center;
-    font-size: 18px;
-    font-weight: 400;
+    text-align: justify;
+    font-size: 13px;
+    font-weight: 100;
     text-shadow: rgba(255, 255, 255, 0.75) 0px 0px 20px
 }
 
 #welcomeDescCTA {
     text-align: center;
-    font-size: 18px;
-    font-weight: 400;
+    font-size: 14px;
+    font-weight: 100;
     text-shadow: rgba(255, 255, 255, 0.75) 0px 0px 20px
 }
 
@@ -480,8 +463,6 @@ body, button {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    transform: scale(1.2);
-    transform-origin: center;
 }
 
 /* Login form anchor styles. */
@@ -504,19 +485,17 @@ body, button {
 /* Logo on login form. */
 #loginImageSeal {
     border-radius: 50%;
-    /*border: 2px solid #cad7e1;
-    box-shadow: 0px 0px 10px 0px rgb(0, 0, 0);
-    background: rgba(1, 2, 1, 0.5);*/
+    border: 2px solid #cad7e1;
+    background: rgba(1, 2, 1, 0.5);
     height: 125px;
     width: 125px;
+    box-shadow: 0px 0px 10px 0px rgb(0, 0, 0);
     margin-bottom: 20px;
 }
 
 /* Header on login view. */
 #loginSubheader {
-    font-family: "Roboto", serif;
-    font-weight: 500;
-    font-style: normal;
+    font-family: 'Avenir Medium';
     margin-bottom: 25px;
     font-size: 12px;
     letter-spacing: 1px;
@@ -532,17 +511,6 @@ body, button {
     align-items: center;
 }
 
-#loginUsername {
-    transform: scale(2);
-    transform-origin: center; 
-}
-
-
-#checkmarkContainer {
-    display: none;
-}
-
-
 /* SVG icons on the login view. */
 .loginSVG {
     fill: #fff;
@@ -552,15 +520,14 @@ body, button {
 
 /* Span which displays errors related to login field content. */
 .loginErrorSpan {
-    font-family: "Roboto", serif;
-    font-weight: 700;
-    font-style: normal;
-    font-size: 20px;
+    font-family: 'Avenir Medium';
+    font-weight: bold;
+    font-size: 8px;
     color: #ff1b0c;
     width: 100%;
-    text-align: center;
+    text-align: right;
     position: absolute;
-    top: 30px;
+    top: 7px;
     opacity: 0;
     transition: 0.25s ease;
 }
@@ -589,9 +556,7 @@ body, button {
 
 /* Login text input styles. */
 .loginField {
-    font-family: "Roboto", serif;
-    font-weight: 500;
-    font-style: normal;
+    font-family: 'Avenir Book';
     background: none;
     border-width: 1.5px 0px 0px 0px;
     border-style: solid;
@@ -630,7 +595,7 @@ body, button {
 
 /* Container which contains the forgot and remember options. */
 #loginOptions {
-    display: none;
+    display: flex;
     justify-content: space-between;
     width: 100%;
 }
@@ -819,7 +784,7 @@ body, button {
 
 /* Disclaimer text styles. */
 .loginDisclaimerText {
-    font-size: 12px;
+    font-size: 7px;
     color: #848484;
     font-weight: bold;
     text-align: center;
@@ -1030,7 +995,6 @@ body, button {
     border-radius: 3px;
     height: 50px;
     width: 100%;
-    font-size: 16px;
     text-align: left;
     padding: 0px 25px;
     cursor: pointer;
@@ -1256,9 +1220,7 @@ body, button {
 }
 .settingsTabHeaderText {
     font-size: 20px;
-    font-family: "Roboto", serif;
-    font-weight: 500;
-    font-style: normal;
+    font-family: 'Avenir Medium';
 }
 .settingsTabHeaderDesc {
     font-size: 12px;
@@ -1297,9 +1259,7 @@ body, button {
     background: none;
     font-size: 12px;
     border-radius: 3px;
-    font-family: "Roboto", serif;
-    font-weight: 500;
-    font-style: normal;
+    font-family: 'Avenir Medium';
     transition: 0.25s ease;
     cursor: pointer;
     outline: none;
@@ -1331,9 +1291,7 @@ body, button {
     background: rgba(0, 0, 0, 0.25);
     border-radius: 3px;
     border: 1px solid rgba(126, 126, 126, 0.57);
-    font-family: "Roboto", serif;
-    font-weight: 500;
-    font-style: normal;
+    font-family: 'Avenir Book';
     transition: 0.25s ease;
 }
 #settingsContainer input[type=number]:focus,
@@ -1362,9 +1320,7 @@ body, button {
 }
 .settingsFieldTitle {
     font-size: 14px;
-    font-family: "Roboto", serif;
-    font-weight: 500;
-    font-style: normal;
+    font-family: 'Avenir Medium';
     color: rgba(255, 255, 255, 0.95);
 }
 .settingsFieldDesc {
@@ -1527,9 +1483,7 @@ input:checked + .toggleSwitchSlider:before {
     width: 89%;
 }
 .settingsFileSelDesc strong {
-    font-family: "Roboto", serif;
-    font-weight: 500;
-    font-style: normal;
+    font-family: 'Avenir Medium';
 }
 
 /* * *
@@ -1637,9 +1591,7 @@ input:checked + .toggleSwitchSlider:before {
     font-size: 12px;
     color: grey;
     font-weight: bold;
-    font-family: "Roboto", serif;
-    font-weight: 500;
-    font-style: normal;
+    font-family: 'Avenir Medium';
 }
 .settingsAuthAccountDetailValue {
     font-size: 14px;
@@ -1661,9 +1613,7 @@ input:checked + .toggleSwitchSlider:before {
     border: none;
     white-space: nowrap;
     background: none;
-    font-family: "Roboto", serif;
-    font-weight: 500;
-    font-style: normal;
+    font-family: 'Avenir Medium';
     outline: none;
     transition: 0.25s ease;
 }
@@ -1688,9 +1638,7 @@ input:checked + .toggleSwitchSlider:before {
     background: none;
     font-size: 12px;
     border-radius: 3px;
-    font-family: "Roboto", serif;
-    font-weight: 500;
-    font-style: normal;
+    font-family: 'Avenir Medium';
     transition: 0.25s ease;
     cursor: pointer;
     outline: none;
@@ -2245,9 +2193,7 @@ input:checked + .toggleSwitchSlider:before {
 /* Release type text. */
 #settingsAboutCurrentVersionTitle {
     font-size: 12px;
-    font-family: "Roboto", serif;
-    font-weight: 500;
-    font-style: normal;
+    font-family: 'Avenir Medium';
     color: #23aa23;
     font-weight: bold;
 }
@@ -2336,9 +2282,7 @@ input:checked + .toggleSwitchSlider:before {
     background-color: rgba(255, 255, 255, 0.25);
     color: white;
     border-radius: 3px;
-    font-family: "Roboto", serif;
-    font-weight: 500;
-    font-style: normal;
+    font-family: 'Avenir Book';
 }
 .settingsChangelogText li+li {
     margin-top: .25em;
@@ -2448,9 +2392,7 @@ input:checked + .toggleSwitchSlider:before {
 /* Release type text. */
 #settingsUpdateVersionTitle {
     font-size: 12px;
-    font-family: "Roboto", serif;
-    font-weight: 500;
-    font-style: normal;
+    font-family: 'Avenir Medium';
     color: #23aa23;
     font-weight: bold;
 }
@@ -2649,9 +2591,7 @@ input:checked + .toggleSwitchSlider:before {
 #newsArticleTitle {
     font-size: 18px;
     font-weight: bold;
-    font-family: "Roboto", serif;
-    font-weight: 500;
-    font-style: normal;
+    font-family: 'Avenir Medium';
     color: white;
     text-decoration: none;
     transition: 0.25s ease;
@@ -2917,6 +2857,7 @@ input:checked + .toggleSwitchSlider:before {
     width: auto;
     position: relative;
     box-sizing: border-box;
+    border-radius: 10%;
 }
 
 /* Logo container styles. */
@@ -2937,10 +2878,10 @@ input:checked + .toggleSwitchSlider:before {
     cursor: pointer;
     position: absolute;
     content: '';
-    height: calc(100% + 20px);
-    width: calc(100% + 20px);
-    top: -10px;
-    left: -16px;
+    height: 100%;
+    width: 100%;
+    top: 0%;
+    left: 0%;
     border-radius: 50%;
     box-shadow: 0 0 15px #43c628;
     animation: glow-grow 4s ease-out infinite;
@@ -2950,38 +2891,36 @@ input:checked + .toggleSwitchSlider:before {
     animation-delay: 2s;
 }
 
-
 /* Update available tooltip styles. */
 #updateAvailableTooltip {
     cursor: pointer;
     visibility: hidden;
     opacity: 0;
-    width: 200px;
-    height: auto;
-    background-color: rgba(0, 0, 0, 0.8);
+    width: 100px;
+    height: 15px;
+    background-color: rgb(0, 0, 0);
     color: #fff;
     text-align: center;
-    border-radius: 8px;
-    padding: 10px;
-    z-index: 1000;
-    font-family: "Roboto", serif;
-    font-weight: 500;
-    font-style: normal;
-    font-size: 16px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.8);
+    border-radius: 4px;
+    padding: 2px;
+    position: absolute;
+    z-index: 1;
+    top: 115%;
+    left: -17.5px;
+    font-family: 'Avenir Medium';
+    font-size: 12px;
     transition: visibility 0s linear 0.25s, opacity 0.25s ease;
 }
 #updateAvailableTooltip::after {
-    content: "";
+    content: " ";
     position: absolute;
     left: 50%;
     bottom: 100%;
     margin-left: -5px;
     border-width: 5px;
     border-style: solid;
-    border-color: transparent transparent rgba(0, 0, 0, 0.8) transparent;
+    border-color: transparent transparent rgb(0, 0, 0) transparent;
 }
-
 #image_seal_container[update]:hover #updateAvailableTooltip {
     visibility: visible;
     opacity: 1;
@@ -3028,8 +2967,6 @@ input:checked + .toggleSwitchSlider:before {
 
 /* User profile avatar container. */
 #avatarContainer {
-    border-radius: 50%;
-    border: 2px solid #cad7e1;
     box-sizing: border-box;
     background: rgba(1, 2, 1, 0.5);
     height: 70px;
@@ -3040,6 +2977,7 @@ input:checked + .toggleSwitchSlider:before {
     background-position: center;
     background-repeat: no-repeat;
     background-size: contain;
+    border-radius: 10%;
 }
 
 /* Avatar edit overlay. */
@@ -3059,7 +2997,7 @@ input:checked + .toggleSwitchSlider:before {
     cursor: pointer;
     width: 100%;
     height: 100%;
-    border-radius: 50%;
+    border-radius: 10%;
 }
 #avatarOverlay:hover,
 #avatarOverlay:focus {
@@ -3160,6 +3098,40 @@ input:checked + .toggleSwitchSlider:before {
     height: 23px;
 }
 
+/* Settings tooltip styles. */
+#settingsTooltip {
+    visibility: hidden;
+    opacity: 0;
+    width: 75px;
+    height: 20px;
+    background-color: rgba(0, 0, 0, 0.75);
+    text-align: center;
+    border-radius: 4px;
+    position: absolute;
+    z-index: 1;
+    right: 130%;
+    font-size: 12px;
+    line-height: 20px;
+    transition: visibility 0s linear 0.25s, opacity 0.25s ease;
+}
+#settingsTooltip::after {
+    content: " ";
+    position: absolute;
+    top: 50%;
+    left: 100%;
+    margin-top: -5px;
+    border-width: 5px;
+    border-style: solid;
+    border-color: transparent transparent transparent rgba(0, 0, 0, 0.75);
+}
+.mediaButton:hover #settingsTooltip,
+.mediaButton:focus #settingsTooltip,
+.mediaButton:active #settingsTooltip {
+    visibility: visible;
+    opacity: 1;
+    transition-delay:0s;
+}
+
 /* Twitter icon colors. */
 #twitterSVG:hover,
 #twitterURL:focus #twitterSVG {
@@ -3205,21 +3177,15 @@ input:checked + .toggleSwitchSlider:before {
 
 /* Style for a general label on the bottom of the landing view. */
 .bot_label {
-    width: 140px;
-    max-width: 90%;
-    font-size: 9px;
+    font-size: 11px;
     letter-spacing: 1px;
     font-weight: bold;
     text-shadow: 0px 0px 0px #bebcbb;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    display: block;
 }
-
 
 /* Divider used on the bottom of the landing view. */
 .bot_divider {
+    height: 25px;
     width: 2px;
     background: rgba(107, 105, 105, 0.7);
     margin-left: 20px;
@@ -3272,9 +3238,7 @@ input:checked + .toggleSwitchSlider:before {
     border-radius: 4px;
     padding: 5px 10px;
     z-index: 1;
-    font-family: "Roboto", serif;
-    font-weight: 500;
-    font-style: normal;
+    font-family: 'Avenir Medium';
     font-size: 12px;
     transition: visibility 0s linear 0.25s, opacity 0.25s ease;
     bottom: calc(100% + 15px);
@@ -3433,7 +3397,7 @@ input:checked + .toggleSwitchSlider:before {
     font-weight: 900;
     letter-spacing: 2px;
     text-shadow: 0px 0px 0px #bebcbb;
-    font-size: 24px;
+    font-size: 20px;
     padding: 0px;
     transition: 0.25s ease;
     outline: none;
@@ -3451,35 +3415,6 @@ input:checked + .toggleSwitchSlider:before {
     cursor: default;
     pointer-events: none;
 }
-
-
-/* The settings button. */
-#settingsMediaButton {
-    background: none;
-    border: none;
-    cursor: pointer;
-    font-weight: 900;
-    letter-spacing: 2px;
-    text-shadow: 0px 0px 0px #bebcbb;
-    font-size: 24px;
-    padding: 0px;
-    transition: 0.25s ease;
-    outline: none;
-}
-#settingsMediaButton:hover,
-#settingsMediaButton:focus {
-    text-shadow: 0px 0px 20px #fff, 0px 0px 20px #fff;
-}
-#settingsMediaButton:active {
-    color: #c7c7c7;
-    text-shadow: 0px 0px 20px #c7c7c7, 0px 0px 20px #c7c7c7;
-}
-#settingsMediaButton:disabled {
-    color: #c7c7c7;
-    cursor: default;
-    pointer-events: none;
-}
-
 
 /* Launch details main container, hidden until launch processing begins. */
 #launch_details {
@@ -3580,9 +3515,9 @@ input:checked + .toggleSwitchSlider:before {
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
-    width: 45%;
-    height: 35%;
+    /*justify-content: space-between;*/
+    width: 300px;
+    /*height: 35%;*/
     box-sizing: border-box;
     padding: 15px 0px;
     /* background-color: #424242; */
@@ -3618,10 +3553,8 @@ input:checked + .toggleSwitchSlider:before {
 
 /* Overlay title styles. */
 #overlayTitle {
-    font-family: "Roboto", serif;
-    font-weight: 500;
-    font-style: normal;
-    font-size: 32px;
+    font-family: 'Avenir Medium';
+    font-size: 20px;
     font-weight: bold;
     letter-spacing: 1px;
     -webkit-user-select: initial;
@@ -3629,7 +3562,7 @@ input:checked + .toggleSwitchSlider:before {
 
 /* Overlay description styles. */
 #overlayDesc {
-    font-size: 16px;
+    font-size: 12px;
     font-weight: bold;
     -webkit-user-select: initial;
 }
@@ -3637,57 +3570,48 @@ input:checked + .toggleSwitchSlider:before {
 /* Div which contains action buttons. */
 #overlayActionContainer {
     display: flex;
+    flex-direction: column;
     justify-content: center;
-    gap: 10px;
 }
 
-/* Common styles for overlay buttons */
-#overlayAcknowledge,
-#overlayAcknowledgeMid,
-#overlayDismiss {
-    background: rgba(0, 0, 0, 0.25);
-    border-style: solid;
-    border-width: 2px;
+/* Overlay acknowledge button styles. */
+#overlayAcknowledge {
+    background: none;
+    border: 1px solid #ffffff;
     color: white;
-    font-family: "Roboto", serif;
-    font-weight: 500;
-    font-style: normal;
+    font-family: 'Avenir Medium';
     font-weight: bold;
     border-radius: 2px;
-    padding: 5px 10px;
-    font-size: 16px;
+    padding: 0px 8.1px;
     cursor: pointer;
     transition: 0.25s ease;
-    text-decoration: none;
+}
+#overlayAcknowledge:hover,
+#overlayAcknowledge:focus {
+    box-shadow: 0px 0px 10px 0px #fff;
     outline: none;
 }
-
-/* Primary action button ("Update") */
-#overlayAcknowledge {
-    border-color: #4CAF50; /* Green border */
-}
-
-/* Secondary action buttons */
-#overlayAcknowledgeMid,
-#overlayDismiss {
-    border-color: #ffffff; /* White border */
-}
-
-/* Hover, focus, and active states */
-#overlayAcknowledge:hover,
-#overlayAcknowledge:focus,
-#overlayAcknowledgeMid:hover,
-#overlayAcknowledgeMid:focus,
-#overlayDismiss:hover,
-#overlayDismiss:focus {
-    box-shadow: 0px 0px 10px 0px #fff;
-}
-
-#overlayAcknowledge:active,
-#overlayAcknowledgeMid:active,
-#overlayDismiss:active {
+#overlayAcknowledge:active {
     border-color: rgba(255, 255, 255, 0.75);
     color: rgba(255, 255, 255, 0.75);
+}
+
+/* Overlay dismiss option styles. */
+#overlayDismiss {
+    font-weight: bold;
+    font-size: 10px;
+    text-decoration: none;
+    padding-top: 2.5px;
+    background: none;
+    border: none;
+    outline: none;
+    cursor: pointer;
+}
+#overlayDismiss:hover {
+    color: rgba(255, 255, 255, 0.75);
+}
+#overlayDismiss:active {
+    color: rgba(165, 165, 165, 0.75);
 }
 
 /* * *
@@ -3707,10 +3631,8 @@ input:checked + .toggleSwitchSlider:before {
 /* Server selection header. */
 #serverSelectHeader,
 #accountSelectHeader {
-    font-family: "Roboto", serif;
-    font-weight: 500;
-    font-style: normal;
-    font-size: 30px;
+    font-family: 'Avenir Medium';
+    font-size: 20px;
     font-weight: bold;
     color: #fff;
     margin-bottom: 25px;
@@ -3751,8 +3673,8 @@ input:checked + .toggleSwitchSlider:before {
 .serverListing {
     border: none;
     padding: 0px;
-    width: 550px;
-    min-height: 100px;
+    width: 375px;
+    min-height: 60px;
     display: flex;
     justify-content: flex-start;
     align-items: center;
@@ -3837,7 +3759,7 @@ input:checked + .toggleSwitchSlider:before {
 
 /* The name of the server listing. */
 .serverListingName {
-    font-size: 20px;
+    font-size: 14px;
     font-weight: bold;
 }
 
@@ -3846,7 +3768,6 @@ input:checked + .toggleSwitchSlider:before {
     font-size: 10px;
     line-height: 10px;
     font-weight: bold;
-    text-align: left;
 }
 
 /* Content container for the server listing's information. */
@@ -3932,11 +3853,8 @@ input:checked + .toggleSwitchSlider:before {
     background: none;
     border: 1px solid #ffffff;
     color: white;
-    font-family: "Roboto", serif;
-    font-weight: 500;
-    font-style: normal;
+    font-family: 'Avenir Medium';
     font-weight: bold;
-    font-size: 30px;
     border-radius: 2px;
     padding: 0px 8.1px;
     cursor: pointer;
@@ -3962,7 +3880,7 @@ input:checked + .toggleSwitchSlider:before {
     font-weight: bold;
     font-size: 10px;
     text-decoration: none;
-    padding-top: 10px;
+    padding-top: 2.5px;
     color: rgba(202, 202, 202, 0.75);
     transition: 0.25s ease;
     background: none;
@@ -4018,7 +3936,8 @@ input:checked + .toggleSwitchSlider:before {
 /* Stationary image for the spinner. */
 #loadCenterImage {
     position: absolute;
-    width: 277px;
+    border-radius: 100%;
+    width: 190px;
     height: auto;
 }
 
