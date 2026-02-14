@@ -1,0 +1,45 @@
+<div id="loginContainer" style="display: none;">
+    <div id="loginCancelContainer" style="display: none;">
+        <button id="loginCancelButton">
+            <div id="loginCancelIcon">X</div>
+            <span id="loginCancelText"><%- lang('login.loginCancelText') %></span>
+        </button>
+    </div>
+    <div id="loginContent">
+        <form id="loginForm" novalidate>
+            <img id="loginImageSeal" src="assets/images/icon.png"/>
+            <span id="loginSubheader"><%- lang('login.loginSubheader') %></span>
+            <div class="loginFieldContainer">
+                <input id="loginUsername" class="loginField" type="text" placeholder="<%- lang('login.loginEmailPlaceholder') %>"/>
+                <span class="loginErrorSpan" id="loginEmailError"><%- lang('login.loginEmailError') %></span>
+            </div>
+            <div id="loginOptions">
+                <label id="checkmarkContainer">
+                    <input id="loginRememberOption" type="checkbox" checked>
+                    <span id="loginRememberText" class="loginSpanDim"><%- lang('login.loginRememberMeText') %></span>
+                    <span class="loginCheckmark"></span>
+                </label>
+            </div>
+            <button id="loginButton" disabled>
+                <div id="loginButtonContent">
+                    <%- lang('login.loginButtonText') %>
+                    <svg id="loginSVG" viewBox="0 0 24.87 13.97">
+                        <defs>
+                            <style>.arrowLine{fill:none;stroke:#FFF;stroke-width:2px;transition: 0.25s ease;}</style>
+                        </defs>
+                        <polyline class="arrowLine" points="0.71 13.26 12.56 1.41 24.16 13.02"/>
+                    </svg>
+                    <div class="circle-loader">
+                        <div class="checkmark draw"></div>
+                    </div>
+                    <!--<div class="spinningCircle" id="loginSpinner"></div>-->
+                </div>
+            </button>
+            <div id="loginDisclaimer">
+                <p class="loginDisclaimerText"><%- lang('login.loginPasswordDisclaimer1') %></p>
+                <p class="loginDisclaimerText"><%- lang('login.loginPasswordDisclaimer2', { appName: lang('app.title') }) %></p>
+            </div>
+        </form>
+    </div>
+    <script src="./assets/js/scripts/login.js"></script>
+</div>

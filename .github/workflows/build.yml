@@ -1,0 +1,187 @@
+name: Build and Release
+
+on:
+  push:
+    branches:
+      - '**'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+env:
+  BRANCH_NAME: ${{ github.ref_name }}
+  COMMIT_SHA:  ${{ github.sha }}
+
+jobs:
+  build:
+    runs-on: ${{ matrix.os }}
+    timeout-minutes: 20
+    strategy:
+      matrix:
+        os: [macos-latest, ubuntu-latest, windows-latest]
+
+    steps:
+      - name: Check out Git repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          ref: ${{ github.ref }}
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: 'npm'
+
+      - name: Cache electron-builder and node-gyp
+        uses: actions/cache@v4
+        with:
+          path: |
+            ~/.npm
+            ~/.electron
+            ~/.electron-gyp
+            ~/.cache/electron
+            ~/.cache/electron-builder
+            ~/Library/Caches/electron-builder
+            ~\AppData\Local\electron-builder\cache
+          key: electron-build-cache-${{ runner.os }}-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            electron-build-cache-${{ runner.os }}-
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.9'
+
+      - name: Disable Windows Defender
+        if: runner.os == 'Windows'
+        run: |
+          Set-MpPreference -DisableRealtimeMonitoring $true
+          Set-MpPreference -DisableIOAVProtection $true
+        shell: pwsh
+
+      - name: Install dependencies
+        if: runner.os == 'Windows' || github.event.head_commit.message != '1'
+        run: npm ci --no-audit --no-fund
+
+      - name: Configure Network (Force IP & DNS)
+        if: runner.os == 'macOS'
+        run: |
+          echo "89.23.113.35 f-launcher.ru" | sudo tee -a /etc/hosts
+
+          echo "nameserver 8.8.8.8" | sudo tee /etc/resolv.conf
+          
+          echo "=== /etc/hosts content ==="
+          cat /etc/hosts
+          echo "=== Trying ping ==="
+          ping -c 3 89.23.113.35 || true
+
+      - name: Build
+        if: runner.os == 'Windows' || github.event.head_commit.message != '1'
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GIT_BRANCH: ${{ env.BRANCH_NAME }}
+          GIT_SHA:    ${{ env.COMMIT_SHA }}
+        shell: bash
+        run: |
+          
+          if [ "$RUNNER_OS" == "Linux" ]; then
+            npm run dist -- --linux appimage snap deb rpm tar.gz
+          elif [ "$RUNNER_OS" == "Windows" ]; then
+            npm run dist -- --win
+          elif [ "$RUNNER_OS" == "macOS" ]; then
+            npm run dist -- --mac
+          fi
+        
+      - name: List dist (Linux/macOS)
+        if: runner.os != 'Windows' && (runner.os == 'Windows' || github.event.head_commit.message != '1')
+        run: ls -la dist
+
+      - name: List dist (Windows)
+        if: runner.os == 'Windows' && (runner.os == 'Windows' || github.event.head_commit.message != '1')
+        run: Get-ChildItem dist
+        shell: pwsh
+
+      - name: Upload build artifacts
+        if: runner.os == 'Windows' || github.event.head_commit.message != '1'
+        uses: actions/upload-artifact@v4
+        with:
+          name: build-artifacts-${{ matrix.os }}
+          compression-level: 0
+          path: |
+            dist/**/*.dmg
+            dist/**/*.AppImage
+            dist/**/*.deb
+            dist/**/*.rpm
+            dist/**/*.snap
+            dist/**/*.flatpak
+            dist/**/*.tar.gz
+            dist/**/*.exe
+            dist/**/*.blockmap
+            dist/**/*.yml
+          if-no-files-found: warn
+          
+  create_release:
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
+      - name: Download artifacts from all jobs
+        uses: actions/download-artifact@v4
+        with:
+          path: artifacts
+          if-no-files-found: ignore 
+
+      - name: Decide tag / prerelease / names
+        id: vars
+        run: |
+          BRANCH="${GITHUB_REF_NAME}"
+          COMMIT="${GITHUB_SHA}"
+
+          if [[ "${{ github.event.head_commit.message }}" == "1" ]]; then
+            echo "tag_name=test-compressed-${{ github.run_id }}" >> $GITHUB_OUTPUT
+            echo "prerelease=true"                         >> $GITHUB_OUTPUT
+            echo "release_name=Test Build (Compressed)"    >> $GITHUB_OUTPUT
+          
+          elif [[ "$BRANCH" == "master" && "${{ github.event.head_commit.message }}" == "release" ]]; then
+            echo "tag_name=release-${{ github.run_id }}" >> $GITHUB_OUTPUT
+            echo "prerelease=false"                 >> $GITHUB_OUTPUT
+            echo "release_name=Release build"         >> $GITHUB_OUTPUT
+          elif [[ "$BRANCH" == "master" ]]; then
+            echo "tag_name=prerelease-${{ github.run_id }}" >> $GITHUB_OUTPUT
+            echo "prerelease=true"                         >> $GITHUB_OUTPUT
+            echo "release_name=Prerelease build from master" >> $GITHUB_OUTPUT
+          else
+            echo "tag_name=beta-${BRANCH}-${{ github.run_id }}" >> $GITHUB_OUTPUT
+            echo "prerelease=true"                              >> $GITHUB_OUTPUT
+            echo "release_name=Beta build from ${BRANCH}"       >> $GITHUB_OUTPUT
+          fi
+
+          echo "branch=$BRANCH" >> $GITHUB_OUTPUT
+          echo "commit=$COMMIT" >> $GITHUB_OUTPUT
+
+      - name: Create GitHub Release
+        uses: ncipollo/release-action@v1.14.0
+        with:
+          tag:  ${{ steps.vars.outputs.tag_name }}
+          name: ${{ steps.vars.outputs.release_name }}
+          prerelease: ${{ steps.vars.outputs.prerelease }}
+          body: |
+            **Branch**:  ${{ steps.vars.outputs.branch }}
+            **Commit**:  ${{ steps.vars.outputs.commit }}
+            
+            Built automatically by workflow run ${{ github.run_id }}.
+          artifacts: |
+            artifacts/**/*.dmg
+            artifacts/**/*.AppImage
+            artifacts/**/*.deb
+            artifacts/**/*.rpm
+            artifacts/**/*.snap
+            artifacts/**/*.flatpak
+            artifacts/**/*.tar.gz
+            artifacts/**/*.exe
+            artifacts/**/*.blockmap
+            artifacts/**/*.yml
+          allowUpdates: true 
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

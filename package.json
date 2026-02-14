@@ -1,0 +1,70 @@
+{
+  "name": "Altis-Of-Life",
+  "version": "2.3.8",
+  "productName": "Altis-Of-Life",
+  "description": "Modded Altis-Of-Life",
+  "author": "Altis-Of-Life (https://github.com/Envel-Experimental/)",
+  "license": "UNLICENSED",
+  "homepage": "https://github.com/Envel-Experimental/HeliosLauncher",
+  "bugs": {
+    "url": "https://github.com/Envel-Experimental/HeliosLauncher/issues"
+  },
+  "private": true,
+  "main": "index.js",
+  "scripts": {
+    "start": "electron .",
+    "postinstall": "patch-package",
+    "dist": "electron-builder build",
+    "dist:win": "npm run dist -- -w",
+    "dist:mac": "npm run dist -- -m",
+    "dist:linux": "npm run dist -- -l",
+    "lint": "eslint --config .eslintrc.json .",
+    "test": "jest && playwright test tests/smoke.spec.js",
+    "test:unit": "jest tests/unit",
+    "test:integration": "jest tests/integration",
+    "test:coverage": "jest --coverage",
+    "test:performance": "xvfb-run --auto-servernum --server-args=\"-screen 0 1280x960x24\" -- playwright test tests/performance",
+    "test:smoke": "xvfb-run --auto-servernum --server-args=\"-screen 0 1280x960x24\" -- playwright test tests/smoke.spec.js"
+  },
+  "engines": {
+    "node": ">=20.x.x"
+  },
+  "dependencies": {
+    "@electron/remote": "^2.1.3",
+    "@sentry/electron": "^7.6.0",
+    "@sentry/profiling-node": "^10.34.0",
+    "adm-zip": "^0.5.16",
+    "check-disk-space": "^3.4.0",
+    "ejs": "^4.0.1",
+    "ejs-electron": "^3.0.0",
+    "electron-updater": "^6.7.3",
+    "fs-extra": "^11.3.3",
+    "helios-distribution-types": "^1.3.0",
+    "jquery": "^3.7.1",
+    "lodash.merge": "^4.6.2",
+    "p-limit": "^7.2.0",
+    "semver": "^7.7.3",
+    "toml": "^3.0.0"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.28.6",
+    "@babel/preset-env": "^7.28.6",
+    "@playwright/test": "^1.57.0",
+    "babel-jest": "^30.2.0",
+    "electron": "^40.0.0",
+    "electron-builder": "^26.4.0",
+    "eslint": "^9.39.2",
+    "jest": "^30.2.0",
+    "msw": "^2.12.7",
+    "patch-package": "^8.0.0",
+    "playwright": "^1.57.0"
+  },
+  "overrides": {
+    "js-yaml": "^4.1.1",
+    "tar": "^7.5.3"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Envel-Experimental/HeliosLauncher.git"
+  }
+}

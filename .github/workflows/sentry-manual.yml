@@ -1,0 +1,48 @@
+name: Manual Sentry Upload
+
+on:
+  # Allows you to run this workflow manually from the "Actions" tab on GitHub
+  workflow_dispatch:
+    inputs:
+      version:
+        description: 'Release version (must match package.json, e.g., 2.3.7)'
+        required: true
+        default: '2.3.7'
+
+jobs:
+  upload_source:
+    runs-on: ubuntu-latest
+    steps:
+      # 1. Check out the code from the current branch.
+      # IMPORTANT: Ensure the code in this branch matches the code in the .exe/.asar exactly.
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      # 2. Use the official Sentry action to create a release and upload artifacts.
+      - name: Create Sentry release and upload source files
+        uses: getsentry/action-release@v1
+        env:
+          # The token you added to Repository Secrets
+          SENTRY_AUTH_TOKEN: ${{ secrets.SENTRY_AUTH_TOKEN }}
+          # Your organization slug from Sentry settings
+          SENTRY_ORG: "foxford-dc"
+          # Your project slug from Sentry settings
+          SENTRY_PROJECT: "node"
+        with:
+          environment: production
+          
+          # Construct the release name to match standard Electron Sentry format: "AppName@Version".
+          # If this doesn't match what the app sends at runtime, source maps won't work.
+          version: "FLauncher@${{ inputs.version }}"
+          
+          # Since you are not using Webpack/Vite (no minification), we upload
+          # the raw source files from the root directory ('./').
+          # This allows Sentry to display the actual code lines in stack traces.
+          sourcemaps: './'
+          
+          # Prevent the workflow from failing if it doesn't find specific .map files
+          # (because we are uploading raw JS files, not generated maps).
+          ignore_missing: true
+          
+          # Prevent failure if the directory seems empty (safety check).
+          ignore_empty: true
