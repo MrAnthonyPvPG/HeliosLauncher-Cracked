@@ -1,20 +1,20 @@
 # Custom Language File for Launcher Customizer
 
 [ejs.app]
-title = "FLAUNCHER"
+title = "Altis-Of-Life"
 
 [ejs.landing]
-mediaGitHubURL = "https://github.com/Envel-Experimental/HeliosLauncher"
-mediaTwitterURL = "#"
-mediaInstagramURL = "#"
-mediaYouTubeURL = "#"
-mediaDiscordURL = "#"
+mediaGitHubURL = "https://altis-of-life.fr/"
+mediaTwitterURL = "https://altis-of-life.fr/"
+mediaInstagramURL = "https://altis-of-life.fr/"
+mediaYouTubeURL = "https://altis-of-life.fr/"
+mediaDiscordURL = "https://altis-of-life.fr/"
 
 [ejs.settings]
 sourceGithubLink = "https://github.com/Envel-Experimental/HeliosLauncher"
 supportLink = "https://github.com/Envel-Experimental/HeliosLauncher/issues"
 
 [ejs.welcome]
-welcomeHeader = "Bienvenue sur FLAUNCHER !"
+welcomeHeader = "Bienvenue sur Altis-Of-Life !"
 welcomeDescription = "Ensuite, nous allons te créer un compte Minecraft. Invente un pseudo avec des lettres anglaises majuscules et/ou minuscules, tu peux utiliser des chiffres et des tirets du bas. De 4 à 16 caractères."
 welcomeDescCTA = 'Sur la page suivante, clique sur "Créer un compte" et entre ton pseudo.'
