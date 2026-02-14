@@ -38,16 +38,16 @@ function isPathValid(p) {
  */
 function getDefaultDataPath(app) {
     const sysRoot = process.platform === 'linux' ? app.getPath('home') : app.getPath('appData')
-    return path.join(sysRoot, '.foxford')
+    return path.join(sysRoot, '.Altis-Of-Life')
 }
 
 /**
- * Gets the secure fallback data directory (C:\.foxford).
+ * Gets the secure fallback data directory (C:\.Altis-Of-Life).
  * WARNING: This path may require elevated privileges for the first directory creation.
  * @returns {string} The fallback data directory path.
  */
 function getFallbackDataPath() {
-    return path.join('C:', '.foxford')
+    return path.join('C:', '.Altis-Of-Life')
 }
 
 /**
@@ -76,7 +76,7 @@ function ensureFallbackDirectorySync(fallbackPath) {
 
 /**
  * Resolves the data directory for the application.
- * Priority: 1. Stable %APPDATA% path. 2. C:\.foxford root path. 3. Original, problematic %APPDATA% path.
+ * Priority: 1. Stable %APPDATA% path. 2. C:\.Altis-Of-Life root path. 3. Original, problematic %APPDATA% path.
  *
  * @param {import('electron').App} app The Electron app object.
  * @returns {Promise<string>} A promise that resolves to the data directory path.
@@ -90,16 +90,16 @@ async function resolveDataPath(app) {
         return defaultPath
     }
 
-    // 2. Path is dirty (e.g., Cyrillic user name) — attempt the C:\.foxford fallback.
+    // 2. Path is dirty (e.g., Cyrillic user name) — attempt the C:\.Altis-Of-Life fallback.
     const fallbackPath = getFallbackDataPath()
 
     try {
         await ensureFallbackDirectory(fallbackPath)
         return fallbackPath
     } catch (error) {
-        // 3. FATAL FALLBACK FAILURE: Could not create C:\.foxford (Permission Denied likely).
+        // 3. FATAL FALLBACK FAILURE: Could not create C:\.Altis-Of-Life (Permission Denied likely).
         // Log: Warning about reverting to the known unstable path, which will likely lead to a Java crash.
-        console.warn('Could not use C:\\.foxford fallback (Permission Denied likely). Reverting to problematic default path.', error)
+        console.warn('Could not use C:\\.Altis-Of-Life fallback (Permission Denied likely). Reverting to problematic default path.', error)
         return defaultPath 
     }
 }
@@ -118,9 +118,9 @@ function resolveDataPathSync(app) {
         ensureFallbackDirectorySync(fallbackPath)
         return fallbackPath
     } catch (error) {
-        // 3. FATAL FALLBACK FAILURE: Could not create C:\.foxford (Permission Denied likely).
+        // 3. FATAL FALLBACK FAILURE: Could not create C:\.Altis-Of-Life (Permission Denied likely).
         // Log: Warning about reverting to the known unstable path, which will likely lead to a Java crash.
-        console.warn('Could not use C:\\.foxford fallback (Permission Denied likely). Reverting to problematic default path.', error)
+        console.warn('Could not use C:\\.Altis-Of-Life fallback (Permission Denied likely). Reverting to problematic default path.', error)
         return defaultPath
     }
 }
